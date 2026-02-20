@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f6fc;
+  --foreground: #16121e;
+  --card: #ffffff;
+  --card-foreground: #16121e;
+  --primary: #5A378C;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f0fb;
+  --secondary-foreground: #5A378C;
+  --muted: #f5f0fb;
+  --muted-foreground: #6b6378;
+  --accent: #f5f0fb;
+  --accent-foreground: #5A378C;
+  --border: #e2daf0;
+  --input: #e2daf0;
+  --ring: #5A378C;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans, Inter, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1c4e9;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9575cd;
+}
+
+.recharts-default-tooltip {
+  border: 1px solid #e2daf0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(90, 55, 140, 0.1) !important;
+}
