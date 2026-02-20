@@ -134,16 +134,16 @@ export const strategyMatrix = recommendations.map((r) => ({
 }));
 
 export const categoryColors: Record<string, string> = {
-  Revenue: "#5A378C",
-  Operations: "#9965d4",
-  Workforce: "#22c55e",
-  Technology: "#3b82f6",
-  Growth: "#f59e0b",
+  Revenue: "#5A378C",    // brand purple
+  Operations: "#0D9488", // dark teal
+  Workforce: "#15803D",  // forest green
+  Technology: "#1D4ED8", // deep navy
+  Growth: "#B45309",     // dark amber
 };
 
 export const priorityColors: Record<string, string> = {
-  Critical: "#dc2626",
-  High: "#f59e0b",
-  Medium: "#3b82f6",
-  Low: "#6b7280",
+  Critical: "#16121e",   // near-black — most serious
+  High: "#5A378C",       // brand purple
+  Medium: "#9b92a8",     // gray
+  Low: "#c4b5d4",        // light gray
 };

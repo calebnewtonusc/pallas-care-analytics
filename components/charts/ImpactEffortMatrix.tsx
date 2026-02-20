@@ -132,10 +132,10 @@ function CustomTooltip({ active, payload, categoryColors, priorityColors }: Cust
 // ─── Main component ───────────────────────────────────────────────────────────
 
 const priorityColors: Record<string, string> = {
-  Critical: "#dc2626",
-  High: "#f59e0b",
-  Medium: "#3b82f6",
-  Low: "#6b7280",
+  Critical: "#16121e",
+  High: "#5A378C",
+  Medium: "#9b92a8",
+  Low: "#c4b5d4",
 };
 
 export function ImpactEffortMatrix({ data, categoryColors }: ImpactEffortMatrixProps) {
