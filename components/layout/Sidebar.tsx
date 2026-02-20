@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -59,8 +60,14 @@ export function Sidebar() {
           rel="noopener noreferrer"
           className="flex items-center gap-3 hover:opacity-75 transition-opacity"
         >
-          <div className="w-8 h-8 rounded-lg bg-[#5A378C] flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-sm">P</span>
+          <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
+            <Image
+              src="/pallas-logo.png"
+              alt="Pallas Care"
+              width={32}
+              height={32}
+              className="object-contain w-full h-full"
+            />
           </div>
           <div>
             <p className="font-semibold text-[#16121e] text-sm leading-tight flex items-center gap-1.5">
