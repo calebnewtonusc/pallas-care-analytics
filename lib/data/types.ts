@@ -10,8 +10,8 @@ export interface KPIMetric {
 
 export interface TimeSeriesPoint {
   period: string;
-  value: number;
-  [key: string]: string | number;
+  value?: number;
+  [key: string]: string | number | undefined;
 }
 
 export interface ServiceBreakdown {
