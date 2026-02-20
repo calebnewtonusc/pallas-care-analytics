@@ -62,4 +62,5 @@ export interface StrategicRecommendation {
   description: string;
   expectedOutcome: string;
   dataEvidence: string;
+  keyMetric: string; // one-line impact figure
 }

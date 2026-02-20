@@ -53,15 +53,23 @@ export function Sidebar() {
     <aside className="w-64 h-screen flex flex-col fixed left-0 top-0 z-40 border-r border-[#e2daf0] bg-white">
       {/* Brand */}
       <div className="px-6 py-5 border-b border-[#e2daf0]">
-        <div className="flex items-center gap-3">
+        <a
+          href="https://www.pallas.care"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 hover:opacity-75 transition-opacity"
+        >
           <div className="w-8 h-8 rounded-lg bg-[#5A378C] flex items-center justify-center flex-shrink-0">
             <span className="text-white font-bold text-sm">P</span>
           </div>
           <div>
-            <p className="font-semibold text-[#16121e] text-sm leading-tight">Pallas Care</p>
+            <p className="font-semibold text-[#16121e] text-sm leading-tight flex items-center gap-1.5">
+              Pallas Care
+              <ExternalLink size={10} className="text-[#c4b5d4]" />
+            </p>
             <p className="text-[10px] text-[#6b6378] leading-tight mt-0.5">Analytics Dashboard</p>
           </div>
-        </div>
+        </a>
       </div>
 
       {/* Navigation */}
@@ -105,16 +113,7 @@ export function Sidebar() {
 
       {/* Footer */}
       <div className="px-4 py-4 border-t border-[#e2daf0]">
-        <a
-          href="https://www.pallas.care"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-xs text-[#6b6378] hover:text-[#5A378C] transition-colors"
-        >
-          <ExternalLink size={12} />
-          pallas.care
-        </a>
-        <p className="text-[10px] text-[#9b92a8] mt-2">
+        <p className="text-[10px] text-[#9b92a8]">
           Data period: Feb 2026 · LA County
         </p>
       </div>

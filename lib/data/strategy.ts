@@ -15,6 +15,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Reduce financial decision latency by 85%. Enable faster rate adjustments, payor negotiation, and proactive cost controls. Estimated $42K/year in avoidable cost overruns.",
     dataEvidence:
       "February revenue is trending 11.5% below target mid-month. Current reporting structure cannot detect this until month-end close.",
+    keyMetric: "$42K saved/yr",
   },
   {
     id: "R2",
@@ -30,6 +31,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Accommodate 4–6 new clients at $38–52/hr rates, generating an estimated $185–245K in additional annual revenue with minimal marketing cost.",
     dataEvidence:
       "Zone has highest client-to-caregiver ratio (1.56:1) vs. company average (1.54:1) and lowest scheduling flexibility margin.",
+    keyMetric: "$185–245K revenue",
   },
   {
     id: "R3",
@@ -45,6 +47,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Improve satisfaction scores in communication and transparency from 4.44 to 4.70+, reduce voluntary churn by estimated 1.2 points, extending average client LTV from $56.2K to $62.8K.",
     dataEvidence:
       "Billing & Transparency is the lowest satisfaction dimension at 4.44. Clients with <12-month tenure report communication gaps as the #1 friction point.",
+    keyMetric: "+$6.6K LTV/client",
   },
   {
     id: "R4",
@@ -60,6 +63,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Increase referral-sourced hires from 37.5% to 55%+ of total hires. Reduce caregiver turnover by estimated 3.8 points, saving $28K/year in recruitment and training costs.",
     dataEvidence:
       "Current referral hires (18/48 = 37.5%) show 91.2% retention vs. 72.4% for job board hires. Delta is 18.8 percentage points.",
+    keyMetric: "$28K saved/yr",
   },
   {
     id: "R5",
@@ -75,6 +79,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Reduce AR DSO from 18 to 12 days for LTCI clients. Unlock approximately $35K in accelerated cash flow. Reduce billing-related client friction.",
     dataEvidence:
       "LTCI DSO is 2.3x longer than private-pay clients. This payor segment is growing 8% annually in the 65+ LA County demographic.",
+    keyMetric: "$35K cash flow",
   },
   {
     id: "R6",
@@ -90,6 +95,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Create a competitive moat via documented outcomes data. Position Pallas for hospital system referral partnerships worth 15–25 new clients/year. Justify 8–12% rate premium.",
     dataEvidence:
       "Currently no structured outcomes tracking. Anecdotal satisfaction data is strong (4.71/5) but lacks clinical metrics needed for B2B partnerships.",
+    keyMetric: "15–25 new clients/yr",
   },
   {
     id: "R7",
@@ -105,6 +111,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Reduce online conversion window from 14 to 8 days. Increase digital channel client share from 13.5% to 20% over 12 months, adding estimated 6–8 new clients annually.",
     dataEvidence:
       "Online channel has 14-day conversion lag, 2x slower than referral. Improving this channel reduces acquisition cost and diversifies lead sources.",
+    keyMetric: "6–8 new clients/yr",
   },
   {
     id: "R8",
@@ -120,6 +127,7 @@ export const recommendations: StrategicRecommendation[] = [
       "Adding 4 live-in clients generates $568K in annual revenue. Gross margin profile is comparable to standard care at ~38%. This represents a $200K+ net revenue expansion.",
     dataEvidence:
       "Live-in clients at $142K average revenue/year vs. company average $38.5K. Current caregiver pool has 6 live-in-eligible caregivers with 0% overtime.",
+    keyMetric: "$568K revenue",
   },
 ];
 
