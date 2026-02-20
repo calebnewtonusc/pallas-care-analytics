@@ -83,26 +83,16 @@ const categoryBadgeVariant: Record<string, "default" | "success" | "info" | "gho
 export default function OperationsPage() {
   return (
     <div className="space-y-6">
-      {/* ── Page header ────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-bold text-[#16121e] tracking-tight">Operations</h1>
-          <p className="text-sm text-[#6b6378] mt-0.5">
-            Service delivery, scheduling, and field performance &middot; Feb 2026
-          </p>
-        </div>
-        <Badge variant="default">Q1 2026</Badge>
-      </div>
 
       {/* ── ROW 1: KPI Cards ─────────────────────────────────────────── */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiMetrics.map((metric) => (
           <KPICard key={metric.label} metric={metric} />
         ))}
       </div>
 
       {/* ── ROW 2: Hours Chart + Scheduling Chart ─────────────────────── */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Hours delivered — 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
@@ -246,7 +236,7 @@ export default function OperationsPage() {
       </Card>
 
       {/* ── ROW 4: Tech Adoption + Incident Tracking ──────────────────── */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Tech Adoption */}
         <Card>
           <CardHeader className="pb-3">

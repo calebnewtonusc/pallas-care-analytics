@@ -215,19 +215,6 @@ function RecommendationCard({ rec }: { rec: StrategicRecommendation }) {
 export default function StrategyPage() {
   return (
     <div className="space-y-6">
-      {/* Page header */}
-      <div className="flex items-start justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-[#16121e] leading-tight">Strategic Insights</h1>
-          <p className="text-sm text-[#6b6378] mt-1">
-            Data-driven recommendations ranked by business impact and implementation feasibility.
-          </p>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-[#6b6378] bg-[#f5f0fb] border border-[#e2daf0] rounded-lg px-3 py-2">
-          <ChevronRight size={12} className="text-[#5A378C]" />
-          <span>February 2026 analysis</span>
-        </div>
-      </div>
 
       {/* ── 1. TOP SUMMARY STAT CARDS ── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

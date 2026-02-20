@@ -67,26 +67,16 @@ export default function ClientsPage() {
 
   return (
     <div className="space-y-6">
-      {/* ── Page header ────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-bold text-[#16121e] tracking-tight">Client Analytics</h1>
-          <p className="text-sm text-[#6b6378] mt-0.5">
-            74 active clients &middot; Updated February 2026
-          </p>
-        </div>
-        <Badge variant="default">Q1 2026</Badge>
-      </div>
 
       {/* ── ROW 1: KPI Cards ─────────────────────────────────────────── */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiMetrics.map((metric) => (
           <KPICard key={metric.label} metric={metric} />
         ))}
       </div>
 
       {/* ── ROW 2: Care Level + Satisfaction ─────────────────────────── */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Care Level Breakdown */}
         <Card>
           <CardHeader className="pb-3">
@@ -196,7 +186,7 @@ export default function ClientsPage() {
       </div>
 
       {/* ── ROW 3: Retention Curve + Age Distribution ─────────────────── */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Retention Curve */}
         <Card>
           <CardHeader className="pb-3">
@@ -274,7 +264,7 @@ export default function ClientsPage() {
       </div>
 
       {/* ── ROW 4: Referral Sources + Geographic Zones ───────────────── */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Referral Sources */}
         <Card>
           <CardHeader className="pb-3">

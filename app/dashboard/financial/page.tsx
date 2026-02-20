@@ -97,21 +97,8 @@ export default function FinancialPage() {
 
   return (
     <div className="space-y-6 pb-8">
-      {/* ── Page Header ── */}
-      <div className="flex items-start justify-between">
-        <div>
-          <h1 className="text-xl font-bold text-[#16121e] leading-tight">Financial Analytics</h1>
-          <p className="text-sm text-[#6b6378] mt-1">
-            Revenue, margins, cost structure &amp; payor mix · Trailing 12 months through Feb 2026
-          </p>
-        </div>
-        <Badge variant="default" className="mt-0.5">
-          TTM Feb 2026
-        </Badge>
-      </div>
-
       {/* ── ROW 1: Top 4 KPI Cards ── */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <FinKPICard
           label="Gross Margin"
           value={formatPercent(kpis.grossMargin)}
@@ -143,7 +130,7 @@ export default function FinancialPage() {
       </div>
 
       {/* ── ROW 2: PnL Chart + Revenue by Service ── */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* PnL Chart — 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
@@ -184,7 +171,7 @@ export default function FinancialPage() {
       </div>
 
       {/* ── ROW 3: Cost Structure + Payor Mix ── */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Cost Structure Table */}
         <Card>
           <CardHeader className="pb-3">
@@ -324,7 +311,7 @@ export default function FinancialPage() {
       </div>
 
       {/* ── ROW 4: Secondary KPIs + Billing Rates ── */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Secondary KPI cards — 1/3 width */}
         <div className="flex flex-col gap-4">
           {/* CAC */}

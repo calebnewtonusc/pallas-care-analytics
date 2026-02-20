@@ -93,26 +93,8 @@ export default function WorkforcePage() {
 
   return (
     <div className="space-y-6">
-      {/* ── page header ───────────────────────────────────────────────── */}
-      <div className="flex items-start justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-[#16121e] tracking-tight">
-            Workforce Quality
-          </h1>
-          <p className="text-sm text-[#6b6378] mt-1">
-            Retention, training, tenure, and caregiver performance — Q4 2025
-          </p>
-        </div>
-        <div className="flex items-center gap-2 bg-[#f5f0fb] border border-[#e2daf0] rounded-lg px-4 py-2">
-          <Users size={14} className="text-[#5A378C]" />
-          <span className="text-xs font-medium text-[#5A378C]">
-            {workforceKPIs.activeCaregiversCount} Active Caregivers
-          </span>
-        </div>
-      </div>
-
       {/* ── ROW 1: KPI cards ──────────────────────────────────────────── */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Retention KPI — custom to show vs industry */}
         <div className="bg-white rounded-xl border border-[#e2daf0] shadow-sm p-5 flex flex-col gap-3 hover:shadow-md hover:border-[#b894e3] transition-all duration-200 col-span-1">
           <p className="text-xs font-medium text-[#6b6378] uppercase tracking-wide leading-tight">
@@ -150,7 +132,7 @@ export default function WorkforcePage() {
       </div>
 
       {/* ── ROW 2: Retention trend + Hiring sources ───────────────────── */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Retention trend — 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
@@ -327,7 +309,7 @@ export default function WorkforcePage() {
       </Card>
 
       {/* ── ROW 4: Tenure bands | Rating distribution | Turnover reasons ── */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Tenure bands */}
         <Card>
           <CardHeader>
@@ -402,7 +384,7 @@ export default function WorkforcePage() {
                 );
               })}
             </div>
-            <div className="mt-4 pt-3 border-t border-[#f0ebfa] grid grid-cols-2 gap-3">
+            <div className="mt-4 pt-3 border-t border-[#f0ebfa] grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="text-center">
                 <p className="text-lg font-bold text-[#5A378C]">
                   {Math.round(

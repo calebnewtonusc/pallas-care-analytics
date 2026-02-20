@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Calendar, TrendingUp } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 const pageTitles: Record<string, { title: string; subtitle: string }> = {
   "/dashboard": {
@@ -38,24 +38,14 @@ export function Header() {
   };
 
   return (
-    <header className="h-16 flex items-center justify-between px-6 bg-white border-b border-[#e2daf0] sticky top-0 z-30">
+    <header className="h-14 flex items-center justify-between px-6 bg-white border-b border-[#e2daf0] sticky top-0 z-30">
       <div>
-        <h1 className="text-base font-semibold text-[#16121e] leading-tight">
-          {pageInfo.title}
-        </h1>
-        <p className="text-xs text-[#6b6378] leading-tight mt-0.5">
-          {pageInfo.subtitle}
-        </p>
+        <h1 className="text-sm font-semibold text-[#16121e] leading-tight">{pageInfo.title}</h1>
+        <p className="text-[11px] text-[#9b92a8] leading-tight mt-0.5">{pageInfo.subtitle}</p>
       </div>
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2 bg-[#f5f0fb] px-3 py-1.5 rounded-lg">
-          <TrendingUp size={13} className="text-[#5A378C]" />
-          <span className="text-xs font-medium text-[#5A378C]">+18.3% YoY</span>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-[#6b6378] bg-[#f8f6fc] border border-[#e2daf0] px-3 py-1.5 rounded-lg">
-          <Calendar size={13} />
-          Feb 2026
-        </div>
+      <div className="flex items-center gap-2 text-xs text-[#6b6378] px-3 py-1.5 rounded-lg bg-[#f8f6fc] border border-[#e2daf0]">
+        <Calendar size={12} />
+        <span>Feb 2026</span>
       </div>
     </header>
   );
