@@ -1,212 +1,117 @@
+"use client";
+
 import { Card, CardHeader, CardContent, CardTitle, CardSubtitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { ImpactEffortMatrix } from "@/components/charts/ImpactEffortMatrix";
 import { recommendations, strategyMatrix, categoryColors, priorityColors } from "@/lib/data/strategy";
 import type { StrategicRecommendation } from "@/lib/data/types";
-import {
-  Target,
-  AlertTriangle,
-  TrendingUp,
-  CheckCircle2,
-  BarChart2,
-  Clock,
-  ChevronRight,
-} from "lucide-react";
+import { Clock, ChevronRight } from "lucide-react";
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function getPriorityVariant(priority: string): "danger" | "warning" | "info" | "ghost" {
-  if (priority === "Critical") return "danger";
-  if (priority === "High") return "warning";
-  if (priority === "Medium") return "info";
-  return "ghost";
-}
-
-function getCategoryVariant(category: string): "default" | "success" | "info" | "warning" | "ghost" {
-  if (category === "Revenue") return "default";
-  if (category === "Growth") return "warning";
-  if (category === "Workforce") return "success";
-  if (category === "Technology") return "info";
-  return "ghost"; // Operations
-}
-
-function getTimeframeVariant(timeframe: string): "default" | "success" | "ghost" {
-  if (timeframe === "30 days") return "success";
-  if (timeframe === "90 days") return "default";
-  return "ghost";
-}
-
-// Small horizontal score bar for impact / effort
-function ScoreBar({ value, color }: { value: number; color: string }) {
-  return (
-    <div className="flex items-center gap-2">
-      <div className="flex-1 h-1.5 bg-[#f0ebfa] rounded-full overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all"
-          style={{ width: `${(value / 10) * 100}%`, backgroundColor: color }}
-        />
-      </div>
-      <span className="text-[11px] font-semibold text-[#16121e] w-4 text-right">{value}</span>
-    </div>
-  );
-}
-
-// Sorted recommendations: Critical → High → Medium → Low
-const sortedRecommendations: StrategicRecommendation[] = [...recommendations].sort((a, b) => {
-  const order: Record<string, number> = { Critical: 0, High: 1, Medium: 2, Low: 3 };
-  return (order[a.priority] ?? 4) - (order[b.priority] ?? 4);
-});
-
+// ─── Quick-win count (≤30 days, high impact) ─────────────────────────────────
+const quickWins = recommendations.filter((r) => r.timeframe === "30 days");
 const criticalCount = recommendations.filter((r) => r.priority === "Critical").length;
-const highCount = recommendations.filter((r) => r.priority === "High").length;
-const mediumCount = recommendations.filter((r) => r.priority === "Medium").length;
-const lowCount = recommendations.filter((r) => r.priority === "Low").length;
 
-const priorityCounts: { label: string; count: number; color: string; bg: string }[] = [
-  { label: "Critical", count: criticalCount, color: "#dc2626", bg: "#fef2f2" },
-  { label: "High", count: highCount, color: "#d97706", bg: "#fffbeb" },
-  { label: "Medium", count: mediumCount, color: "#3b82f6", bg: "#eff6ff" },
-  ...(lowCount > 0
-    ? [{ label: "Low", count: lowCount, color: "#6b7280", bg: "#f9fafb" }]
-    : []),
-];
-
-// ─── Stat Card ────────────────────────────────────────────────────────────────
-
-interface StatCardProps {
-  icon: React.ElementType;
-  iconBg: string;
-  iconColor: string;
-  value: string;
-  label: string;
-  sublabel: string;
-}
-
-function StatCard({ icon: Icon, iconBg, iconColor, value, label, sublabel }: StatCardProps) {
-  return (
-    <Card className="p-5">
-      <div className="flex items-start gap-4">
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-          style={{ backgroundColor: iconBg }}
-        >
-          <Icon size={20} style={{ color: iconColor }} />
-        </div>
-        <div>
-          <p className="text-2xl font-bold text-[#16121e] leading-none mb-0.5">{value}</p>
-          <p className="text-sm font-semibold text-[#16121e]">{label}</p>
-          <p className="text-xs text-[#6b6378] mt-0.5">{sublabel}</p>
-        </div>
-      </div>
-    </Card>
-  );
-}
+// ─── Priority sort ────────────────────────────────────────────────────────────
+const priorityOrder: Record<string, number> = { Critical: 0, High: 1, Medium: 2, Low: 3 };
+const sortedRecs = [...recommendations].sort(
+  (a, b) => (priorityOrder[a.priority] ?? 4) - (priorityOrder[b.priority] ?? 4)
+);
 
 // ─── Recommendation Card ──────────────────────────────────────────────────────
-
 function RecommendationCard({ rec }: { rec: StrategicRecommendation }) {
   const priorityColor = priorityColors[rec.priority] ?? "#6b7280";
   const categoryColor = categoryColors[rec.category] ?? "#5A378C";
 
   return (
-    <Card hover className="overflow-hidden">
-      {/* Priority accent bar */}
-      <div className="h-1 w-full" style={{ backgroundColor: priorityColor }} />
+    <div className="bg-white border border-[#e2daf0] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-150">
+      {/* Priority accent — thin stripe */}
+      <div className="h-[3px] w-full" style={{ backgroundColor: priorityColor }} />
 
-      <CardHeader className="pt-4">
-        {/* Header row: badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          {/* R# badge — colored by priority */}
-          <span
-            className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold border"
-            style={{
-              backgroundColor: `${priorityColor}18`,
-              color: priorityColor,
-              borderColor: `${priorityColor}35`,
-            }}
-          >
-            {rec.id}
-          </span>
-
-          {/* Priority badge */}
-          <Badge variant={getPriorityVariant(rec.priority)}>{rec.priority} Priority</Badge>
-
-          {/* Category badge — colored dot + label */}
-          <span
-            className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium border"
-            style={{
-              backgroundColor: `${categoryColor}14`,
-              color: categoryColor,
-              borderColor: `${categoryColor}30`,
-            }}
-          >
+      <div className="p-5">
+        {/* Top row: R# + category + right-aligned priority + timeframe */}
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <div className="flex items-center gap-2.5">
             <span
-              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-              style={{ backgroundColor: categoryColor }}
-            />
-            {rec.category}
-          </span>
-
-          {/* Timeframe badge */}
-          <Badge variant={getTimeframeVariant(rec.timeframe)}>
-            <Clock size={10} className="mr-1 inline" />
-            {rec.timeframe}
-          </Badge>
+              className="text-lg font-black leading-none tabular-nums"
+              style={{ color: priorityColor }}
+            >
+              {rec.id}
+            </span>
+            <span
+              className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2 py-0.5 rounded-md"
+              style={{ backgroundColor: `${categoryColor}14`, color: categoryColor }}
+            >
+              <span
+                className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                style={{ backgroundColor: categoryColor }}
+              />
+              {rec.category}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <span className="text-[11px] text-[#9b92a8] font-medium flex items-center gap-1">
+              <Clock size={10} />
+              {rec.timeframe}
+            </span>
+            <span
+              className="text-[11px] font-bold px-2 py-0.5 rounded"
+              style={{ backgroundColor: `${priorityColor}15`, color: priorityColor }}
+            >
+              {rec.priority}
+            </span>
+          </div>
         </div>
 
         {/* Title */}
-        <CardTitle className="text-base font-bold text-[#16121e] leading-snug">
-          {rec.title}
-        </CardTitle>
-      </CardHeader>
+        <h3 className="text-sm font-bold text-[#16121e] leading-snug mb-2.5">{rec.title}</h3>
 
-      <CardContent className="pt-3">
         {/* Description */}
-        <p className="text-sm text-[#3d3549] leading-relaxed mb-4">{rec.description}</p>
+        <p className="text-[13px] text-[#4a3f5c] leading-relaxed mb-3">{rec.description}</p>
 
-        {/* Expected Outcome */}
-        <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-3.5 mb-3">
-          <div className="flex items-start gap-2.5">
-            <CheckCircle2 size={15} className="text-emerald-600 mt-0.5 flex-shrink-0" />
-            <div>
-              <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-wide mb-1">
-                Expected Outcome
-              </p>
-              <p className="text-sm text-emerald-900 leading-relaxed">{rec.expectedOutcome}</p>
+        {/* Expected outcome — integrated, no green box */}
+        <p className="text-[13px] text-[#16121e] leading-relaxed mb-3">
+          <span className="text-emerald-600 font-bold">→ </span>
+          {rec.expectedOutcome}
+        </p>
+
+        {/* Data evidence — muted footer, no purple box */}
+        <p className="text-[12px] text-[#9b92a8] leading-relaxed border-t border-[#f0ebfa] pt-2.5 mb-4">
+          <span className="font-semibold text-[#6b6378]">Evidence: </span>
+          {rec.dataEvidence}
+        </p>
+
+        {/* Impact / Effort — compact inline bars */}
+        <div className="grid grid-cols-2 gap-x-5">
+          <div>
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-[10px] font-semibold text-[#9b92a8] uppercase tracking-wide">
+                Impact
+              </span>
+              <span className="text-[11px] font-bold text-[#16121e]">{rec.impact}/10</span>
+            </div>
+            <div className="h-1 bg-[#f0ebfa] rounded-full overflow-hidden">
+              <div
+                className="h-full rounded-full"
+                style={{ width: `${rec.impact * 10}%`, backgroundColor: "#059669" }}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-[10px] font-semibold text-[#9b92a8] uppercase tracking-wide">
+                Effort
+              </span>
+              <span className="text-[11px] font-bold text-[#16121e]">{rec.effort}/10</span>
+            </div>
+            <div className="h-1 bg-[#f0ebfa] rounded-full overflow-hidden">
+              <div
+                className="h-full rounded-full"
+                style={{ width: `${rec.effort * 10}%`, backgroundColor: "#5A378C" }}
+              />
             </div>
           </div>
         </div>
-
-        {/* Data Evidence */}
-        <div className="bg-[#f5f0fb] border border-[#e2daf0] rounded-xl p-3.5 mb-4">
-          <div className="flex items-start gap-2.5">
-            <BarChart2 size={15} className="text-[#5A378C] mt-0.5 flex-shrink-0" />
-            <div>
-              <p className="text-[11px] font-bold text-[#5A378C] uppercase tracking-wide mb-1">
-                Data Evidence
-              </p>
-              <p className="text-sm text-[#3d3549] leading-relaxed">{rec.dataEvidence}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Impact / Effort score bars */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 border-t border-[#f0ebfa] pt-3">
-          <div>
-            <p className="text-[10px] font-semibold text-[#6b6378] uppercase tracking-wide mb-1">
-              Business Impact
-            </p>
-            <ScoreBar value={rec.impact} color="#059669" />
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold text-[#6b6378] uppercase tracking-wide mb-1">
-              Implementation Effort
-            </p>
-            <ScoreBar value={rec.effort} color="#5A378C" />
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -216,42 +121,51 @@ export default function StrategyPage() {
   return (
     <div className="space-y-6">
 
-      {/* ── 1. TOP SUMMARY STAT CARDS ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatCard
-          icon={Target}
-          iconBg="#f5f0fb"
-          iconColor="#5A378C"
-          value="8"
-          label="Total Recommendations"
-          sublabel="Across 5 strategic categories"
-        />
-        <StatCard
-          icon={AlertTriangle}
-          iconBg="#fef2f2"
-          iconColor="#dc2626"
-          value="2"
-          label="Critical Priority Actions"
-          sublabel="Require immediate leadership attention"
-        />
-        <StatCard
-          icon={TrendingUp}
-          iconBg="#ecfdf5"
-          iconColor="#059669"
-          value="$1.2M+"
-          label="Estimated Revenue Impact"
-          sublabel="Combined upside across all initiatives"
-        />
+      {/* ── 1. HERO COMMAND STRIP ───────────────────────────────────────── */}
+      <div className="bg-white rounded-2xl border border-[#e2daf0] shadow-sm overflow-hidden">
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#e2daf0]">
+          <div className="px-6 py-5 bg-[#5A378C]">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#d6c2ef]">
+              Initiatives
+            </p>
+            <p className="text-4xl font-bold text-white mt-2 leading-none">
+              {recommendations.length}
+            </p>
+            <p className="text-xs text-[#b894e3] mt-2">Across 5 categories</p>
+          </div>
+          <div className="px-6 py-5">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9b92a8]">
+              Critical Actions
+            </p>
+            <p className="text-4xl font-bold text-red-600 mt-2 leading-none">{criticalCount}</p>
+            <p className="text-xs text-red-400 mt-2">Immediate leadership attention</p>
+          </div>
+          <div className="px-6 py-5">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9b92a8]">
+              Revenue Upside
+            </p>
+            <p className="text-4xl font-bold text-[#16121e] mt-2 leading-none">$1.2M+</p>
+            <p className="text-xs text-emerald-600 mt-2">Combined across all initiatives</p>
+          </div>
+          <div className="px-6 py-5">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9b92a8]">
+              Quick Wins
+            </p>
+            <p className="text-4xl font-bold text-[#16121e] mt-2 leading-none">{quickWins.length}</p>
+            <p className="text-xs text-[#9b92a8] mt-2">Achievable in 30 days</p>
+          </div>
+        </div>
       </div>
 
-      {/* ── 2. IMPACT vs EFFORT MATRIX + SIDEBAR ── */}
+      {/* ── 2. IMPACT / EFFORT MATRIX + SIDEBAR ────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Matrix — 2/3 width */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="text-base">Impact vs. Effort Matrix</CardTitle>
+            <CardTitle>Impact vs. Effort Matrix</CardTitle>
             <CardSubtitle>
-              Each node represents one strategic recommendation. Hover for details.
+              Each node is one initiative — colored by category, positioned by business impact and
+              implementation effort
             </CardSubtitle>
           </CardHeader>
           <CardContent className="pt-2">
@@ -261,72 +175,38 @@ export default function StrategyPage() {
 
         {/* Sidebar — 1/3 width */}
         <div className="flex flex-col gap-4">
-          {/* Priority breakdown card */}
+          {/* Priority breakdown */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Priority Breakdown</CardTitle>
-              <CardSubtitle>{recommendations.length} recommendations total</CardSubtitle>
+              <CardTitle>By Priority</CardTitle>
+              <CardSubtitle>{recommendations.length} recommendations</CardSubtitle>
             </CardHeader>
             <CardContent className="pt-3 space-y-3">
-              {priorityCounts.map(({ label, count, color, bg }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <div
-                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: color }}
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-0.5">
-                      <span className="text-xs font-semibold text-[#16121e]">{label}</span>
-                      <span
-                        className="text-xs font-bold px-1.5 py-0.5 rounded-md"
-                        style={{ backgroundColor: bg, color }}
-                      >
-                        {count}
-                      </span>
-                    </div>
-                    <div className="h-1.5 bg-[#f0ebfa] rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full"
-                        style={{
-                          width: `${(count / recommendations.length) * 100}%`,
-                          backgroundColor: color,
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-
-          {/* Category breakdown card */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">By Category</CardTitle>
-              <CardSubtitle>Distribution across focus areas</CardSubtitle>
-            </CardHeader>
-            <CardContent className="pt-3 space-y-2.5">
-              {Object.entries(categoryColors).map(([category, color]) => {
-                const count = recommendations.filter((r) => r.category === category).length;
-                if (count === 0) return null;
+              {(["Critical", "High", "Medium"] as const).map((level) => {
+                const count = recommendations.filter((r) => r.priority === level).length;
+                const color = priorityColors[level];
                 return (
-                  <div key={category} className="flex items-center gap-3">
+                  <div key={level} className="flex items-center gap-3">
                     <div
                       className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                       style={{ backgroundColor: color }}
                     />
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-0.5">
-                        <span className="text-xs font-semibold text-[#16121e]">{category}</span>
-                        <span className="text-xs text-[#6b6378] font-medium">{count}</span>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-semibold text-[#16121e]">{level}</span>
+                        <span
+                          className="text-xs font-bold tabular-nums px-1.5 py-0.5 rounded"
+                          style={{ backgroundColor: `${color}15`, color }}
+                        >
+                          {count}
+                        </span>
                       </div>
-                      <div className="h-1 bg-[#f0ebfa] rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-[#f0ebfa] rounded-full overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{
                             width: `${(count / recommendations.length) * 100}%`,
                             backgroundColor: color,
-                            opacity: 0.8,
                           }}
                         />
                       </div>
@@ -337,84 +217,102 @@ export default function StrategyPage() {
             </CardContent>
           </Card>
 
-          {/* Reading guide card */}
+          {/* 30-day action plan */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">How to Read This Matrix</CardTitle>
+              <CardTitle>30-Day Action Plan</CardTitle>
+              <CardSubtitle>Highest-leverage moves this month</CardSubtitle>
             </CardHeader>
-            <CardContent className="pt-2 space-y-2.5">
-              {[
-                {
-                  zone: "Quick Wins",
-                  color: "#059669",
-                  bg: "#ecfdf5",
-                  desc: "High impact with low effort. Start here immediately.",
-                },
-                {
-                  zone: "Major Projects",
-                  color: "#3b82f6",
-                  bg: "#eff6ff",
-                  desc: "High payoff but require planning and resources.",
-                },
-                {
-                  zone: "Fill-ins",
-                  color: "#6b7280",
-                  bg: "#f9fafb",
-                  desc: "Low effort but limited upside. Schedule opportunistically.",
-                },
-                {
-                  zone: "Avoid",
-                  color: "#dc2626",
-                  bg: "#fef2f2",
-                  desc: "High cost, low return. Deprioritize or eliminate.",
-                },
-              ].map(({ zone, color, bg, desc }) => (
-                <div key={zone} className="flex items-start gap-2.5">
+            <CardContent className="pt-2 space-y-1">
+              {quickWins.map((r) => {
+                const priorityColor = priorityColors[r.priority] ?? "#6b7280";
+                const categoryColor = categoryColors[r.category] ?? "#5A378C";
+                return (
                   <div
-                    className="w-5 h-5 rounded flex-shrink-0 mt-0.5 border"
-                    style={{ backgroundColor: bg, borderColor: `${color}40` }}
-                  />
-                  <div>
-                    <p className="text-[11px] font-bold" style={{ color }}>
-                      {zone}
-                    </p>
-                    <p className="text-[11px] text-[#6b6378] leading-snug">{desc}</p>
+                    key={r.id}
+                    className="flex items-start gap-3 py-2.5 border-b border-[#f0ebfa] last:border-0"
+                  >
+                    <span
+                      className="text-sm font-black leading-none mt-0.5 flex-shrink-0 tabular-nums"
+                      style={{ color: priorityColor }}
+                    >
+                      {r.id}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-semibold text-[#16121e] leading-snug mb-1">
+                        {r.title}
+                      </p>
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className="text-[10px] font-medium px-1.5 py-0.5 rounded"
+                          style={{ backgroundColor: `${categoryColor}14`, color: categoryColor }}
+                        >
+                          {r.category}
+                        </span>
+                        <span
+                          className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+                          style={{ backgroundColor: `${priorityColor}15`, color: priorityColor }}
+                        >
+                          {r.priority}
+                        </span>
+                      </div>
+                    </div>
+                    <ChevronRight size={14} className="text-[#c4b5d4] flex-shrink-0 mt-1" />
                   </div>
-                </div>
-              ))}
+                );
+              })}
+            </CardContent>
+          </Card>
+
+          {/* Category breakdown */}
+          <Card>
+            <CardHeader>
+              <CardTitle>By Category</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-2 space-y-2">
+              {Object.entries(categoryColors).map(([category, color]) => {
+                const count = recommendations.filter((r) => r.category === category).length;
+                if (count === 0) return null;
+                return (
+                  <div key={category} className="flex items-center gap-3">
+                    <div
+                      className="w-2 h-2 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: color }}
+                    />
+                    <div className="flex-1">
+                      <div className="flex justify-between mb-1">
+                        <span className="text-xs font-medium text-[#16121e]">{category}</span>
+                        <span className="text-xs text-[#9b92a8] font-medium tabular-nums">
+                          {count}
+                        </span>
+                      </div>
+                      <div className="h-1 bg-[#f0ebfa] rounded-full overflow-hidden">
+                        <div
+                          className="h-full rounded-full opacity-80"
+                          style={{
+                            width: `${(count / recommendations.length) * 100}%`,
+                            backgroundColor: color,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </CardContent>
           </Card>
         </div>
       </div>
 
-      {/* ── 3. RECOMMENDATION CARDS ── */}
+      {/* ── 3. ALL RECOMMENDATIONS ──────────────────────────────────────── */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-lg font-bold text-[#16121e]">All Recommendations</h2>
-            <p className="text-sm text-[#6b6378] mt-0.5">
-              Sorted by priority — Critical actions listed first.
-            </p>
-          </div>
-          <div className="flex items-center gap-2">
-            {priorityCounts.slice(0, 3).map(({ label, color, bg }) => (
-              <span
-                key={label}
-                className="text-[11px] font-semibold px-2 py-1 rounded-lg border"
-                style={{
-                  backgroundColor: bg,
-                  color,
-                  borderColor: `${color}30`,
-                }}
-              >
-                {label}
-              </span>
-            ))}
-          </div>
+        <div className="mb-4">
+          <h2 className="text-base font-bold text-[#16121e]">All Recommendations</h2>
+          <p className="text-sm text-[#9b92a8] mt-0.5">Sorted Critical → High → Medium</p>
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-          {sortedRecommendations.map((rec) => (
+          {sortedRecs.map((rec) => (
             <RecommendationCard key={rec.id} rec={rec} />
           ))}
         </div>
