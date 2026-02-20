@@ -95,7 +95,7 @@ export default function WorkforcePage() {
     <div className="space-y-6">
       {/* ── ROW 1: KPI cards ──────────────────────────────────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Retention KPI — custom to show vs industry */}
+        {/* Retention KPI, custom to show vs industry */}
         <div className="bg-white rounded-xl border border-[#e2daf0] shadow-sm p-5 flex flex-col gap-3 hover:shadow-md hover:border-[#b894e3] transition-all duration-200 col-span-1">
           <p className="text-xs font-medium text-[#6b6378] uppercase tracking-wide leading-tight">
             Retention Rate
@@ -133,13 +133,13 @@ export default function WorkforcePage() {
 
       {/* ── ROW 2: Retention trend + Hiring sources ───────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Retention trend — 2/3 width */}
+        {/* Retention trend, 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between">
               <div>
                 <CardTitle>Retention Rate Trend</CardTitle>
-                <CardSubtitle>Pallas Care vs. Industry Average — 8 quarters</CardSubtitle>
+                <CardSubtitle>Pallas Care vs. Industry Average: 8 quarters</CardSubtitle>
               </div>
               {/* Gap callout */}
               <div className="flex flex-col items-end gap-1">
@@ -158,7 +158,7 @@ export default function WorkforcePage() {
           </CardContent>
         </Card>
 
-        {/* Hiring sources — 1/3 width */}
+        {/* Hiring sources, 1/3 width */}
         <Card>
           <CardHeader>
             <CardTitle>Hiring Sources</CardTitle>
@@ -227,7 +227,7 @@ export default function WorkforcePage() {
           <div className="flex items-start justify-between">
             <div>
               <CardTitle>Training Completion</CardTitle>
-              <CardSubtitle>10 modules — required and optional</CardSubtitle>
+              <CardSubtitle>10 modules: required and optional</CardSubtitle>
             </div>
             <div className="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-1.5">
               <BookOpen size={12} className="text-emerald-600" />
@@ -293,7 +293,7 @@ export default function WorkforcePage() {
         <Card>
           <CardHeader>
             <CardTitle>Turnover Reasons</CardTitle>
-            <CardSubtitle>Exit interview analysis — trailing 12 months</CardSubtitle>
+            <CardSubtitle>Exit interview analysis: trailing 12 months</CardSubtitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-0 mt-1">
@@ -336,7 +336,7 @@ export default function WorkforcePage() {
             <div className="mt-3 pt-3 border-t border-[#f0ebfa]">
               <p className="text-[11px] text-[#6b6378] leading-relaxed">
                 <span className="font-semibold text-[#16121e]">Key insight:</span>{" "}
-                52% of turnover is addressable — compensation and client-matching
+                52% of turnover is addressable, compensation and client-matching
                 programs could significantly reduce attrition.
               </p>
             </div>

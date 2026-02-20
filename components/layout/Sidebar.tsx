@@ -60,12 +60,12 @@ export function Sidebar() {
           rel="noopener noreferrer"
           className="flex items-center gap-3 hover:opacity-75 transition-opacity"
         >
-          <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0">
+          <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
             <Image
               src="/pallas-logo.png"
               alt="Pallas Care"
-              width={32}
-              height={32}
+              width={48}
+              height={48}
               className="object-contain w-full h-full"
             />
           </div>

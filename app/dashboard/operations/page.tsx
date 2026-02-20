@@ -93,7 +93,7 @@ export default function OperationsPage() {
 
       {/* ── ROW 2: Hours Chart + Scheduling Chart ─────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Hours delivered — 2/3 width */}
+        {/* Hours delivered, 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
             <CardTitle>Hours Delivered vs. Target</CardTitle>
@@ -123,7 +123,7 @@ export default function OperationsPage() {
           </CardContent>
         </Card>
 
-        {/* Scheduling efficiency — 1/3 width */}
+        {/* Scheduling efficiency, 1/3 width */}
         <Card>
           <CardHeader className="pb-3">
             <CardTitle>Scheduling Efficiency</CardTitle>
@@ -278,7 +278,7 @@ export default function OperationsPage() {
                         </Badge>
                         {item.adopted < 60 && (
                           <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5 flex-shrink-0">
-                            Low adoption — see R3
+                            Low adoption, see R3
                           </span>
                         )}
                       </div>

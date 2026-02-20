@@ -43,7 +43,7 @@ const overallScore = Math.round(
   Object.values(scorecard).reduce((a, b) => a + b, 0) / Object.values(scorecard).length
 );
 
-// The top 4 primary metrics — displayed large in the hero
+// The top 4 primary metrics, displayed large in the hero
 const heroMetrics = [
   { label: "Annual Revenue", value: "$2.85M", change: "+18.3%", context: "year over year", primary: true },
   { label: "Active Clients", value: "74", change: "+12.1%", context: "vs prior quarter", primary: false },
@@ -65,7 +65,7 @@ export default function ExecutiveOverviewPage() {
             Pallas Care × Data Analytics Partnership
           </p>
           <p className="text-[11px] text-[#6b6378] leading-relaxed">
-            This platform illustrates what a fully integrated analytics system would surface for Pallas Care —
+            This platform illustrates what a fully integrated analytics system would surface for Pallas Care
             built around your mission of aging-in-place, workforce quality, and high-touch culturally competent care.
             All metrics are calibrated to LA County premium non-medical home care industry benchmarks.
           </p>

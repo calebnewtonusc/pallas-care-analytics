@@ -102,7 +102,7 @@ export default function FinancialPage() {
       <div className="flex items-start gap-3 px-4 py-3 bg-amber-50 border border-amber-200 rounded-xl">
         <AlertTriangle size={14} className="text-amber-600 flex-shrink-0 mt-0.5" />
         <p className="text-xs text-amber-800 leading-relaxed">
-          <span className="font-semibold">Feb &lsquo;26 revenue tracking below plan</span> —&nbsp;
+          <span className="font-semibold">Feb &lsquo;26 revenue tracking below plan</span> ,
           $237K MTD vs. $268K target (-11.5%). Real-time visibility enables proactive course correction
           before month-end close. Prior reporting cycle would not surface this until March.
         </p>
@@ -142,12 +142,12 @@ export default function FinancialPage() {
 
       {/* ── ROW 2: PnL Chart + Revenue by Service ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* PnL Chart — 2/3 width */}
+        {/* PnL Chart, 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between">
               <div>
-                <CardTitle>Profit &amp; Loss — 12 Months</CardTitle>
+                <CardTitle>Profit &amp; Loss: 12 Months</CardTitle>
                 <CardSubtitle>Revenue vs. COGS vs. Net Income · Mar 2025 – Feb 2026</CardSubtitle>
               </div>
               <div className="flex items-center gap-2">
@@ -163,7 +163,7 @@ export default function FinancialPage() {
           </CardContent>
         </Card>
 
-        {/* Revenue by Service — 1/3 width */}
+        {/* Revenue by Service, 1/3 width */}
         <Card>
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between">

@@ -194,7 +194,7 @@ export default function StrategyPage() {
       {/* ── PARTNERSHIP ROADMAP ──────────────────────────────────────── */}
       <div className="bg-[#f5f0fb] border border-[#e2daf0] rounded-2xl overflow-hidden">
         <div className="px-6 py-5 border-b border-[#e2daf0]">
-          <p className="text-sm font-semibold text-[#16121e]">From Illustrative to Live — Partnership Roadmap</p>
+          <p className="text-sm font-semibold text-[#16121e]">From Illustrative to Live: Partnership Roadmap</p>
           <p className="text-xs text-[#6b6378] mt-0.5">
             Three phases to replace every benchmark metric with Pallas Care&rsquo;s real operational data
           </p>
@@ -269,7 +269,7 @@ export default function StrategyPage() {
         </div>
         <div className="px-6 py-4 bg-white border-t border-[#e2daf0]">
           <p className="text-[11px] text-[#6b6378] text-center leading-relaxed">
-            This dashboard is the Phase 3 deliverable — built before your data, to show exactly what we&rsquo;d build with it.
+            This dashboard is the Phase 3 deliverable, built before your data, to show exactly what we&rsquo;d build with it.
             All 8 initiatives above become data-backed decisions specific to Pallas Care once connected to your systems.
           </p>
         </div>

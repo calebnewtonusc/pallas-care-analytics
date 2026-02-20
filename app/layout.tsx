@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pallas Care | Analytics Dashboard",
   description:
-    "Strategy-driven data analytics and operational insights for Pallas Care — a premium, person-centered home care agency serving older adults in Los Angeles County.",
+    "Strategy-driven data analytics and operational insights for Pallas Care, a premium, person-centered home care agency serving older adults in Los Angeles County.",
   keywords: ["home care", "analytics", "aging-in-place", "Los Angeles", "caregiver"],
 };
 

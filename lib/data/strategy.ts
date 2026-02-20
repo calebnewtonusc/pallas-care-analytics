@@ -122,7 +122,7 @@ export const recommendations: StrategicRecommendation[] = [
     effort: 6,
     timeframe: "6 months",
     description:
-      "Live-in clients generate $142K average annual revenue each — 3.7x the company average. Current 4 live-in clients represent only 5.4% of client mix. With dedicated live-in caregiver recruitment and structured matching, Pallas can safely scale to 8–10 live-in clients.",
+      "Live-in clients generate $142K average annual revenue each: 3.7x the company average. Current 4 live-in clients represent only 5.4% of client mix. With dedicated live-in caregiver recruitment and structured matching, Pallas can safely scale to 8–10 live-in clients.",
     expectedOutcome:
       "Adding 4 live-in clients generates $568K in annual revenue. Gross margin profile is comparable to standard care at ~38%. This represents a $200K+ net revenue expansion.",
     dataEvidence:
@@ -150,7 +150,7 @@ export const categoryColors: Record<string, string> = {
 };
 
 export const priorityColors: Record<string, string> = {
-  Critical: "#16121e",   // near-black — most serious
+  Critical: "#16121e",   // near-black, most serious
   High: "#5A378C",       // brand purple
   Medium: "#9b92a8",     // gray
   Low: "#c4b5d4",        // light gray

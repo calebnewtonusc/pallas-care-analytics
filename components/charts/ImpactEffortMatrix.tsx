@@ -143,7 +143,7 @@ export function ImpactEffortMatrix({ data, categoryColors }: ImpactEffortMatrixP
     <div className="w-full">
       {/* Chart container with quadrant backgrounds rendered via CSS grid overlay */}
       <div className="relative">
-        {/* Quadrant background grid — positioned to align with chart plot area */}
+        {/* Quadrant background grid, positioned to align with chart plot area */}
         {/* recharts default margins: top=5 right=5 bottom=5 left=10 (adjusted below) */}
         <div
           className="absolute pointer-events-none"
@@ -251,7 +251,7 @@ export function ImpactEffortMatrix({ data, categoryColors }: ImpactEffortMatrixP
           </ScatterChart>
         </ResponsiveContainer>
 
-        {/* Quadrant text labels — overlaid on chart */}
+        {/* Quadrant text labels, overlaid on chart */}
         <div
           className="absolute pointer-events-none"
           style={{ top: 5, right: 5, bottom: 40, left: 52 }}
