@@ -80,3 +80,13 @@ export const diagnosesServed = [
   { diagnosis: "Parkinson's Disease", count: 8, percentage: 10.8 },
   { diagnosis: "Stroke Recovery", count: 6, percentage: 8.1 },
 ];
+
+export const npsBreakdown = {
+  score: 72,
+  promoters: 80,   // % who scored 9-10
+  passives: 12,    // % who scored 7-8
+  detractors: 8,   // % who scored 0-6
+  totalRespondents: 68,
+  industryAvg: 32, // home care industry NPS average
+  topBoxNote: "Top decile for non-medical home care nationally",
+};

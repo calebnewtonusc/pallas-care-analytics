@@ -6,6 +6,8 @@ import {
   referralSources,
   tenureRetention,
   satisfactionByCategory,
+  diagnosesServed,
+  npsBreakdown,
 } from "@/lib/data/clients";
 import { Card, CardHeader, CardContent, CardTitle, CardSubtitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +15,7 @@ import { KPICard } from "@/components/kpi/KPICard";
 import { RetentionCurve } from "@/components/charts/RetentionCurve";
 import { formatCurrency, formatPercent } from "@/lib/utils";
 import type { KPIMetric } from "@/lib/data/types";
-import { Users, Star, Clock, TrendingDown } from "lucide-react";
+import { Users, Star, Clock, TrendingDown, TrendingUp } from "lucide-react";
 
 // ─── Care level color palette ───────────────────────────────────────────────
 const careLevelColors: Record<string, string> = {
@@ -363,6 +365,122 @@ export default function ClientsPage() {
                 ))}
               </tbody>
             </table>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* ── ROW 5: Conditions Served + NPS Breakdown ─────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Conditions Served */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle>Conditions & Diagnoses Served</CardTitle>
+            <CardSubtitle>Active client cohort · multiple diagnoses per client possible</CardSubtitle>
+          </CardHeader>
+          <CardContent className="pt-2 space-y-2.5">
+            {diagnosesServed.map((item) => (
+              <div key={item.diagnosis} className="flex items-center gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-medium text-[#16121e] leading-tight">{item.diagnosis}</span>
+                    <span className="text-xs font-semibold text-[#5A378C] flex-shrink-0 ml-2 tabular-nums">
+                      {item.count} clients
+                    </span>
+                  </div>
+                  <div className="bg-[#f5f0fb] rounded-full h-1.5 overflow-hidden">
+                    <div
+                      className="h-1.5 rounded-full"
+                      style={{
+                        width: `${item.percentage}%`,
+                        backgroundColor: item.percentage >= 30 ? "#5A378C" : item.percentage >= 20 ? "#9965d4" : "#c4a8e8",
+                      }}
+                    />
+                  </div>
+                </div>
+                <span className="text-[11px] text-[#9b92a8] w-8 text-right flex-shrink-0 tabular-nums">
+                  {item.percentage.toFixed(1)}%
+                </span>
+              </div>
+            ))}
+            <p className="text-[10px] text-[#9b92a8] pt-1 border-t border-[#f0ebfa] mt-2">
+              % calculated against total active client count of {clientKPIs.activeClients}
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* NPS Breakdown */}
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-start justify-between">
+              <div>
+                <CardTitle>Net Promoter Score</CardTitle>
+                <CardSubtitle>Promoter − Detractor split · {npsBreakdown.totalRespondents} respondents</CardSubtitle>
+              </div>
+              <div className="flex flex-col items-end flex-shrink-0">
+                <span className="text-3xl font-bold text-[#5A378C] leading-none">{npsBreakdown.score}</span>
+                <span className="text-[10px] text-[#9b92a8] mt-0.5 uppercase tracking-wide">NPS</span>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-2">
+            {/* Stacked bar breakdown */}
+            <div className="flex h-8 rounded-lg overflow-hidden w-full mb-4">
+              <div
+                className="flex items-center justify-center text-white text-[11px] font-bold"
+                style={{ width: `${npsBreakdown.promoters}%`, backgroundColor: "#059669" }}
+              >
+                {npsBreakdown.promoters}%
+              </div>
+              <div
+                className="flex items-center justify-center text-[#6b6378] text-[11px] font-medium"
+                style={{ width: `${npsBreakdown.passives}%`, backgroundColor: "#e2daf0" }}
+              >
+                {npsBreakdown.passives}%
+              </div>
+              <div
+                className="flex items-center justify-center text-white text-[11px] font-bold"
+                style={{ width: `${npsBreakdown.detractors}%`, backgroundColor: "#ef4444" }}
+              >
+                {npsBreakdown.detractors}%
+              </div>
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-sm bg-emerald-600" />
+                <span className="text-[11px] text-[#6b6378]">Promoters (9–10)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-sm bg-[#e2daf0]" />
+                <span className="text-[11px] text-[#6b6378]">Passives (7–8)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-sm bg-red-500" />
+                <span className="text-[11px] text-[#6b6378]">Detractors (0–6)</span>
+              </div>
+            </div>
+
+            {/* Benchmark comparison */}
+            <div className="pt-3 border-t border-[#f0ebfa] space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-[#6b6378]">Pallas Care NPS</span>
+                <span className="text-sm font-bold text-[#5A378C]">{npsBreakdown.score}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-[#6b6378]">Home care industry avg</span>
+                <span className="text-sm font-bold text-[#9b92a8]">{npsBreakdown.industryAvg}</span>
+              </div>
+              <div className="flex items-center gap-2 pt-1">
+                <div className="flex items-center gap-1 bg-emerald-50 border border-emerald-200 rounded-md px-2.5 py-1.5">
+                  <TrendingUp size={11} className="text-emerald-600" />
+                  <span className="text-[11px] font-semibold text-emerald-700">
+                    +{npsBreakdown.score - npsBreakdown.industryAvg} pts above benchmark
+                  </span>
+                </div>
+                <span className="text-[10px] text-[#9b92a8] italic">{npsBreakdown.topBoxNote}</span>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>

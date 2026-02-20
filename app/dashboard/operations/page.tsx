@@ -173,6 +173,7 @@ export default function OperationsPage() {
                 <th className="text-left py-2.5 text-[#9b92a8] font-medium pr-3">Zone</th>
                 <th className="text-center py-2.5 text-[#9b92a8] font-medium w-16">Clients</th>
                 <th className="text-center py-2.5 text-[#9b92a8] font-medium w-20">Caregivers</th>
+                <th className="text-center py-2.5 text-[#9b92a8] font-medium w-20">C:CG</th>
                 <th className="text-center py-2.5 text-[#9b92a8] font-medium w-24">Weekly Hrs</th>
                 <th className="text-center py-2.5 text-[#9b92a8] font-medium w-24">Fulfillment</th>
                 <th className="text-center py-2.5 text-[#9b92a8] font-medium w-28">Avg Response</th>
@@ -187,6 +188,20 @@ export default function OperationsPage() {
                     <td className="py-3 pr-3 text-[#16121e] font-medium">{row.zone}</td>
                     <td className="py-3 text-center text-[#4a3f5c] tabular-nums">{row.clients}</td>
                     <td className="py-3 text-center text-[#4a3f5c] tabular-nums">{row.caregivers}</td>
+                    <td className="py-3 text-center">
+                      <span
+                        className={`text-xs font-semibold tabular-nums ${
+                          (row.clients / row.caregivers) >= 1.55
+                            ? "text-amber-600"
+                            : "text-[#4a3f5c]"
+                        }`}
+                      >
+                        {(row.clients / row.caregivers).toFixed(2)}
+                        {(row.clients / row.caregivers) >= 1.55 && (
+                          <span className="ml-1 text-amber-500">↑</span>
+                        )}
+                      </span>
+                    </td>
                     <td className="py-3 text-center text-[#4a3f5c] tabular-nums">
                       {row.weeklyHours}h
                     </td>
@@ -256,11 +271,16 @@ export default function OperationsPage() {
                 return (
                   <div key={item.tool} className="space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex items-center gap-2 min-w-0 flex-wrap">
                         <span className="text-sm text-[#16121e] font-medium truncate">{item.tool}</span>
                         <Badge variant={badgeVariant} className="flex-shrink-0">
                           {item.category}
                         </Badge>
+                        {item.adopted < 60 && (
+                          <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5 flex-shrink-0">
+                            Low adoption — see R3
+                          </span>
+                        )}
                       </div>
                       <span
                         className={`text-sm font-bold tabular-nums ml-3 flex-shrink-0 ${adoptionTextColor(item.adopted)}`}

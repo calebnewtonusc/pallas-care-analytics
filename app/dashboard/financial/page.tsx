@@ -21,6 +21,7 @@ import {
   Users,
   CreditCard,
   Calendar,
+  AlertTriangle,
 } from "lucide-react";
 
 // ─── Inline KPI card (server component) ──────────────────────────────────────
@@ -97,6 +98,16 @@ export default function FinancialPage() {
 
   return (
     <div className="space-y-6 pb-8">
+      {/* ── FEB ALERT ── */}
+      <div className="flex items-start gap-3 px-4 py-3 bg-amber-50 border border-amber-200 rounded-xl">
+        <AlertTriangle size={14} className="text-amber-600 flex-shrink-0 mt-0.5" />
+        <p className="text-xs text-amber-800 leading-relaxed">
+          <span className="font-semibold">Feb &lsquo;26 revenue tracking below plan</span> —&nbsp;
+          $237K MTD vs. $268K target (-11.5%). Real-time visibility enables proactive course correction
+          before month-end close. Prior reporting cycle would not surface this until March.
+        </p>
+      </div>
+
       {/* ── ROW 1: Top 4 KPI Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <FinKPICard

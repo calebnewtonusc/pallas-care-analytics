@@ -4,11 +4,11 @@ import {
   ComposedChart,
   Bar,
   Line,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { ChartTooltip } from "@/components/charts/ChartTooltip";
@@ -18,28 +18,8 @@ interface PnLChartProps {
   data: TimeSeriesPoint[];
 }
 
-function CustomTooltip({
-  active,
-  payload,
-  label,
-}: {
-  active?: boolean;
-  payload?: Array<{ name: string; value: number; color: string; dataKey: string }>;
-  label?: string;
-}) {
-  return (
-    <ChartTooltip
-      active={active}
-      payload={payload}
-      label={label}
-      formatType="currency"
-    />
-  );
-}
-
 const legendItems = [
-  { color: "#b894e3", label: "Revenue" },
-  { color: "#e2daf0", label: "COGS" },
+  { color: "#b894e3", label: "Revenue", isFill: true },
   { color: "#5A378C", label: "Net Income", isLine: true },
 ];
 
@@ -68,13 +48,9 @@ export function PnLChart({ data }: PnLChartProps) {
         <ComposedChart
           data={data}
           margin={{ top: 4, right: 16, left: 8, bottom: 0 }}
-          barCategoryGap="28%"
+          barCategoryGap="30%"
         >
-          <CartesianGrid
-            strokeDasharray="3 3"
-            stroke="#f0ebfa"
-            vertical={false}
-          />
+          <CartesianGrid strokeDasharray="3 3" stroke="#f0ebfa" vertical={false} />
           <XAxis
             dataKey="period"
             tick={{ fontSize: 11, fill: "#6b6378" }}
@@ -92,24 +68,15 @@ export function PnLChart({ data }: PnLChartProps) {
             width={52}
           />
           <Tooltip
-            content={<CustomTooltip />}
+            content={<ChartTooltip formatType="currency" />}
             cursor={{ fill: "#f5f0fb", opacity: 0.5 }}
           />
           <Bar
             dataKey="revenue"
             name="Revenue"
-            stackId="financials"
             fill="#b894e3"
-            radius={[0, 0, 0, 0]}
-            maxBarSize={40}
-          />
-          <Bar
-            dataKey="cogs"
-            name="COGS"
-            stackId="financials"
-            fill="#e2daf0"
             radius={[3, 3, 0, 0]}
-            maxBarSize={40}
+            maxBarSize={42}
           />
           <Line
             type="monotone"

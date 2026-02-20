@@ -28,7 +28,7 @@ export const executiveKPIs: KPIMetric[] = [
     value: 78.4,
     formatted: "78.4%",
     change: 4.2,
-    changeLabel: "vs. industry avg 65%",
+    changeLabel: "vs. prior year",
     unit: "%",
   },
   {
