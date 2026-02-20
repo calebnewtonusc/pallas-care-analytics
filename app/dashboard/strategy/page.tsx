@@ -191,6 +191,90 @@ export default function StrategyPage() {
         </CardContent>
       </Card>
 
+      {/* ── PARTNERSHIP ROADMAP ──────────────────────────────────────── */}
+      <div className="bg-[#f5f0fb] border border-[#e2daf0] rounded-2xl overflow-hidden">
+        <div className="px-6 py-5 border-b border-[#e2daf0]">
+          <p className="text-sm font-semibold text-[#16121e]">From Illustrative to Live — Partnership Roadmap</p>
+          <p className="text-xs text-[#6b6378] mt-0.5">
+            Three phases to replace every benchmark metric with Pallas Care&rsquo;s real operational data
+          </p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[#e2daf0]">
+          {[
+            {
+              phase: "Phase 1",
+              label: "Data Discovery",
+              timeline: "Weeks 1–2",
+              color: "#5A378C",
+              items: [
+                "Export scheduling & shift records",
+                "Pull 12-month billing history",
+                "Compile caregiver exit interview logs",
+                "Map client satisfaction survey data",
+              ],
+            },
+            {
+              phase: "Phase 2",
+              label: "Analysis & Population",
+              timeline: "Weeks 3–4",
+              color: "#0D9488",
+              items: [
+                "Replace all benchmarks with actuals",
+                "Validate model against reported P&L",
+                "Identify real retention risk factors",
+                "Refine all 8 strategy recommendations",
+              ],
+            },
+            {
+              phase: "Phase 3",
+              label: "Live Integration",
+              timeline: "Month 2+",
+              color: "#15803D",
+              items: [
+                "Connect scheduling platform API",
+                "Automate billing data pipeline",
+                "Enable real-time mid-month alerts",
+                "Deploy for leadership team access",
+              ],
+            },
+          ].map((p) => (
+            <div key={p.phase} className="px-6 py-5">
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <p
+                    className="text-[10px] font-bold uppercase tracking-widest"
+                    style={{ color: p.color }}
+                  >
+                    {p.phase}
+                  </p>
+                  <p className="text-sm font-semibold text-[#16121e] mt-0.5">{p.label}</p>
+                </div>
+                <span className="text-[10px] text-[#9b92a8] bg-white border border-[#e2daf0] px-2 py-1 rounded-md">
+                  {p.timeline}
+                </span>
+              </div>
+              <ul className="space-y-2">
+                {p.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs text-[#4a3f5c]">
+                    <span
+                      className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
+                      style={{ backgroundColor: p.color }}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className="px-6 py-4 bg-white border-t border-[#e2daf0]">
+          <p className="text-[11px] text-[#6b6378] text-center leading-relaxed">
+            This dashboard is the Phase 3 deliverable — built before your data, to show exactly what we&rsquo;d build with it.
+            All 8 initiatives above become data-backed decisions specific to Pallas Care once connected to your systems.
+          </p>
+        </div>
+      </div>
+
     </div>
   );
 }

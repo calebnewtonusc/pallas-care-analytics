@@ -112,14 +112,14 @@ export function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="px-4 py-4 border-t border-[#e2daf0] space-y-2">
-        <div className="flex items-center gap-1.5">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-          <span className="text-[10px] font-semibold text-amber-600 uppercase tracking-wide">Demo Dashboard</span>
-        </div>
-        <p className="text-[10px] text-[#9b92a8] leading-relaxed">
-          Sample data · Feb 2026 · LA County
+      <div className="px-4 py-4 border-t border-[#e2daf0] space-y-1">
+        <p className="text-[10px] font-bold text-[#5A378C] uppercase tracking-widest">
+          Analytics Partnership
         </p>
+        <p className="text-[10px] text-[#9b92a8] leading-relaxed">
+          Illustrative · LA County benchmarks
+        </p>
+        <p className="text-[10px] text-[#9b92a8]">PHI · NAHC · LA DHS · Feb 2026</p>
       </div>
     </aside>
   );

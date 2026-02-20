@@ -58,6 +58,26 @@ export default function ExecutiveOverviewPage() {
   return (
     <div className="flex flex-col gap-6">
 
+      {/* ── PARTNERSHIP CONTEXT ──────────────────────────────────────── */}
+      <div className="flex items-start justify-between gap-6 bg-[#f5f0fb] border border-[#e2daf0] rounded-xl px-5 py-4">
+        <div className="flex-1">
+          <p className="text-[10px] font-bold text-[#5A378C] uppercase tracking-widest mb-1.5">
+            Pallas Care × Data Analytics Partnership
+          </p>
+          <p className="text-[11px] text-[#6b6378] leading-relaxed">
+            This platform illustrates what a fully integrated analytics system would surface for Pallas Care —
+            built around your mission of aging-in-place, workforce quality, and high-touch culturally competent care.
+            All metrics are calibrated to LA County premium non-medical home care industry benchmarks.
+          </p>
+        </div>
+        <div className="flex-shrink-0 text-right border-l border-[#e2daf0] pl-5">
+          <p className="text-[10px] font-semibold text-[#9b92a8] uppercase tracking-wide mb-1">Benchmark Sources</p>
+          <p className="text-[10px] text-[#6b6378]">PHI National Workforce Data</p>
+          <p className="text-[10px] text-[#6b6378]">NAHC Industry Sourcebook</p>
+          <p className="text-[10px] text-[#6b6378]">LA County DHS · CMS Data</p>
+        </div>
+      </div>
+
       {/* ── HERO: Primary KPIs with real visual hierarchy ──────────────── */}
       <div className="bg-white rounded-2xl border border-[#e2daf0] shadow-sm overflow-hidden">
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#e2daf0]">

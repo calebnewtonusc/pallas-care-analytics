@@ -12,8 +12,8 @@ export const clientKPIs = {
   satisfactionChange: 2.8,
   netPromoterScore: 72,
   netPromoterChange: 6,
-  churnRate: 4.1,
-  churnRateChange: -1.3,
+  churnRate: 2.1,
+  churnRateChange: -0.8,
 };
 
 export const ageDistribution = [
