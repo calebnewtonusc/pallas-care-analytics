@@ -74,42 +74,10 @@ function RecommendationCard({ rec }: { rec: StrategicRecommendation }) {
         </p>
 
         {/* Data evidence — muted footer, no purple box */}
-        <p className="text-[12px] text-[#9b92a8] leading-relaxed border-t border-[#f0ebfa] pt-2.5 mb-4">
+        <p className="text-[12px] text-[#9b92a8] leading-relaxed border-t border-[#f0ebfa] pt-2.5">
           <span className="font-semibold text-[#6b6378]">Evidence: </span>
           {rec.dataEvidence}
         </p>
-
-        {/* Impact / Effort — compact inline bars */}
-        <div className="grid grid-cols-2 gap-x-5">
-          <div>
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-[10px] font-semibold text-[#9b92a8] uppercase tracking-wide">
-                Impact
-              </span>
-              <span className="text-[11px] font-bold text-[#16121e]">{rec.impact}/10</span>
-            </div>
-            <div className="h-1 bg-[#f0ebfa] rounded-full overflow-hidden">
-              <div
-                className="h-full rounded-full"
-                style={{ width: `${rec.impact * 10}%`, backgroundColor: "#059669" }}
-              />
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-[10px] font-semibold text-[#9b92a8] uppercase tracking-wide">
-                Effort
-              </span>
-              <span className="text-[11px] font-bold text-[#16121e]">{rec.effort}/10</span>
-            </div>
-            <div className="h-1 bg-[#f0ebfa] rounded-full overflow-hidden">
-              <div
-                className="h-full rounded-full"
-                style={{ width: `${rec.effort * 10}%`, backgroundColor: "#5A378C" }}
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -179,41 +147,32 @@ export default function StrategyPage() {
           <Card>
             <CardHeader>
               <CardTitle>By Priority</CardTitle>
-              <CardSubtitle>{recommendations.length} recommendations</CardSubtitle>
+              <CardSubtitle>{recommendations.length} total recommendations</CardSubtitle>
             </CardHeader>
-            <CardContent className="pt-3 space-y-3">
-              {(["Critical", "High", "Medium"] as const).map((level) => {
-                const count = recommendations.filter((r) => r.priority === level).length;
-                const color = priorityColors[level];
-                return (
-                  <div key={level} className="flex items-center gap-3">
+            <CardContent className="pt-2">
+              <div className="flex flex-wrap gap-2">
+                {(["Critical", "High", "Medium"] as const).map((level) => {
+                  const count = recommendations.filter((r) => r.priority === level).length;
+                  const color = priorityColors[level];
+                  return (
                     <div
-                      className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: color }}
-                    />
-                    <div className="flex-1">
-                      <div className="flex justify-between mb-1">
-                        <span className="text-xs font-semibold text-[#16121e]">{level}</span>
-                        <span
-                          className="text-xs font-bold tabular-nums px-1.5 py-0.5 rounded"
-                          style={{ backgroundColor: `${color}15`, color }}
-                        >
-                          {count}
-                        </span>
-                      </div>
-                      <div className="h-1.5 bg-[#f0ebfa] rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full"
-                          style={{
-                            width: `${(count / recommendations.length) * 100}%`,
-                            backgroundColor: color,
-                          }}
-                        />
-                      </div>
+                      key={level}
+                      className="flex items-center gap-2 px-3 py-2 rounded-xl border flex-1 min-w-[80px]"
+                      style={{ borderColor: `${color}30`, backgroundColor: `${color}08` }}
+                    >
+                      <span
+                        className="text-xl font-black leading-none tabular-nums"
+                        style={{ color }}
+                      >
+                        {count}
+                      </span>
+                      <span className="text-xs font-semibold text-[#4a3f5c] leading-tight">
+                        {level}
+                      </span>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </CardContent>
           </Card>
 
@@ -264,43 +223,6 @@ export default function StrategyPage() {
             </CardContent>
           </Card>
 
-          {/* Category breakdown */}
-          <Card>
-            <CardHeader>
-              <CardTitle>By Category</CardTitle>
-            </CardHeader>
-            <CardContent className="pt-2 space-y-2">
-              {Object.entries(categoryColors).map(([category, color]) => {
-                const count = recommendations.filter((r) => r.category === category).length;
-                if (count === 0) return null;
-                return (
-                  <div key={category} className="flex items-center gap-3">
-                    <div
-                      className="w-2 h-2 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: color }}
-                    />
-                    <div className="flex-1">
-                      <div className="flex justify-between mb-1">
-                        <span className="text-xs font-medium text-[#16121e]">{category}</span>
-                        <span className="text-xs text-[#9b92a8] font-medium tabular-nums">
-                          {count}
-                        </span>
-                      </div>
-                      <div className="h-1 bg-[#f0ebfa] rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full opacity-80"
-                          style={{
-                            width: `${(count / recommendations.length) * 100}%`,
-                            backgroundColor: color,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </CardContent>
-          </Card>
         </div>
       </div>
 

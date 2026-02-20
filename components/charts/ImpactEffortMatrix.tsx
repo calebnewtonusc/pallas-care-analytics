@@ -141,26 +141,6 @@ const priorityColors: Record<string, string> = {
 export function ImpactEffortMatrix({ data, categoryColors }: ImpactEffortMatrixProps) {
   return (
     <div className="w-full">
-      {/* Quadrant label legend */}
-      <div className="grid grid-cols-2 gap-2 mb-3 text-[11px] font-medium">
-        <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-sm bg-emerald-100 border border-emerald-300" />
-          <span className="text-emerald-700">Quick Wins — high impact, low effort</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-sm bg-blue-50 border border-blue-200" />
-          <span className="text-blue-700">Major Projects — high impact, high effort</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-sm bg-gray-100 border border-gray-300" />
-          <span className="text-[#6b6378]">Fill-ins — low impact, low effort</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-sm bg-red-50 border border-red-200" />
-          <span className="text-red-500">Avoid — low impact, high effort</span>
-        </div>
-      </div>
-
       {/* Chart container with quadrant backgrounds rendered via CSS grid overlay */}
       <div className="relative">
         {/* Quadrant background grid — positioned to align with chart plot area */}
