@@ -14,12 +14,12 @@ A strategy-driven data analytics platform built by Kappa Theta Pi (USC) for **Pa
 
 ## Features
 
-- **Executive Overview** — Hero KPI cards (annual revenue, active clients, caregiver retention) with a composite performance scorecard across 5 business dimensions
-- **Financial Analytics** — Monthly P&L trends, revenue-vs-target charts, cost structure breakdown, payor mix, and billing efficiency metrics
-- **Workforce Quality** — Caregiver retention tracking, training pipeline, satisfaction trends, and comparison against industry benchmarks (PHI, NAHC)
-- **Client Analytics** — Demographics, care level distribution, referral source attribution, and client lifetime value analysis
-- **Operations** — Hours delivered, scheduling efficiency, geographic coverage across LA County
-- **Strategic Insights** — Impact/effort matrix with 8 prioritized recommendations for scalable, high-touch care growth
+- **Executive Overview:** Hero KPI cards (annual revenue, active clients, caregiver retention) with a composite performance scorecard across 5 business dimensions
+- **Financial Analytics:** Monthly P&L trends, revenue-vs-target charts, cost structure breakdown, payor mix, and billing efficiency metrics
+- **Workforce Quality:** Caregiver retention tracking, training pipeline, satisfaction trends, and comparison against industry benchmarks (PHI, NAHC)
+- **Client Analytics:** Demographics, care level distribution, referral source attribution, and client lifetime value analysis
+- **Operations:** Hours delivered, scheduling efficiency, geographic coverage across LA County
+- **Strategic Insights:** Impact/effort matrix with 8 prioritized recommendations for scalable, high-touch care growth
 
 ## Tech Stack
 
@@ -40,7 +40,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) — redirects automatically to `/dashboard`.
+Open [http://localhost:3000](http://localhost:3000), which redirects automatically to `/dashboard`.
 
 ```bash
 npm run build   # Production build
@@ -54,10 +54,10 @@ Built in partnership with Pallas Care to deliver actionable financial visibility
 - Licensed HCO: `#194701168`
 - Service area: Los Angeles County
 - Engagement type: Data analytics, strategy consulting, technology recommendations
-- KTP Chapter: USC — Spring 2026
+- KTP Chapter: USC, Spring 2026
 
 > Data shown is illustrative and benchmarked against LA County industry averages (PHI, NAHC, LA DHS, Feb 2026).
 
 ## Author
 
-**Caleb Newton** — [calebnewton.me](https://calebnewton.me)
+**Caleb Newton** ([calebnewton.me](https://calebnewton.me))
