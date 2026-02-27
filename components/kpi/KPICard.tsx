@@ -40,29 +40,3 @@ export function KPICard({ metric, className }: KPICardProps) {
   );
 }
 
-interface StatRowProps {
-  label: string;
-  value: string | number;
-  change?: number;
-  changeLabel?: string;
-  className?: string;
-}
-
-export function StatRow({ label, value, change, changeLabel, className }: StatRowProps) {
-  const changeClass = change !== undefined ? getChangeClass(change) : "";
-  const prefix = change !== undefined ? getChangePrefix(change) : "";
-
-  return (
-    <div className={cn("flex items-center justify-between py-2.5 border-b border-[#f0ebfa] last:border-0", className)}>
-      <span className="text-sm text-[#4a3f5c]">{label}</span>
-      <div className="flex items-center gap-3">
-        <span className="text-sm font-semibold text-[#16121e]">{value}</span>
-        {change !== undefined && (
-          <span className={cn("text-xs font-medium", changeClass)}>
-            {prefix}{Math.abs(change).toFixed(1)}%{changeLabel ? ` ${changeLabel}` : ""}
-          </span>
-        )}
-      </div>
-    </div>
-  );
-}

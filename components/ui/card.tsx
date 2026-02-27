@@ -1,8 +1,12 @@
 import { cn } from "@/lib/utils";
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
+}
+
+interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
+  children: ReactNode;
 }
 
 export function Card({ className, hover = false, ...props }: CardProps) {
@@ -26,12 +30,14 @@ export function CardContent({ className, ...props }: HTMLAttributes<HTMLDivEleme
   return <div className={cn("px-5 py-4", className)} {...props} />;
 }
 
-export function CardTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
+export function CardTitle({ className, children, ...props }: CardTitleProps) {
   return (
     <h3
       className={cn("text-sm font-semibold text-[#16121e] leading-tight", className)}
       {...props}
-    />
+    >
+      {children}
+    </h3>
   );
 }
 

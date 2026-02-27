@@ -1,16 +1,16 @@
 "use client";
 
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-} from "recharts";
+import dynamic from "next/dynamic";
 import { ChartTooltip } from "@/components/charts/ChartTooltip";
+
+const BarChart = dynamic(() => import("recharts").then((m) => m.BarChart), { ssr: false });
+const Bar = dynamic(() => import("recharts").then((m) => m.Bar), { ssr: false });
+const XAxis = dynamic(() => import("recharts").then((m) => m.XAxis), { ssr: false });
+const YAxis = dynamic(() => import("recharts").then((m) => m.YAxis), { ssr: false });
+const CartesianGrid = dynamic(() => import("recharts").then((m) => m.CartesianGrid), { ssr: false });
+const Tooltip = dynamic(() => import("recharts").then((m) => m.Tooltip), { ssr: false });
+const ResponsiveContainer = dynamic(() => import("recharts").then((m) => m.ResponsiveContainer), { ssr: false });
+const Cell = dynamic(() => import("recharts").then((m) => m.Cell), { ssr: false });
 
 interface TenureBand {
   band: string;
@@ -60,8 +60,8 @@ export function TenureBarChart({ data }: TenureChartProps) {
           cursor={{ fill: "#f5f0fb" }}
         />
         <Bar dataKey="percentage" name="Share of Team" radius={[0, 4, 4, 0]}>
-          {data.map((entry, index) => (
-            <Cell key={`tenure-${index}`} fill={getBarColor(entry.percentage)} />
+          {data.map((entry) => (
+            <Cell key={entry.band} fill={getBarColor(entry.percentage)} />
           ))}
         </Bar>
       </BarChart>

@@ -1,15 +1,15 @@
 "use client";
 
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import dynamic from "next/dynamic";
 import { ChartTooltip } from "@/components/charts/ChartTooltip";
 import { formatCurrency, formatPercent } from "@/lib/utils";
 import type { ServiceBreakdown } from "@/lib/data/types";
+
+const PieChart = dynamic(() => import("recharts").then((m) => m.PieChart), { ssr: false });
+const Pie = dynamic(() => import("recharts").then((m) => m.Pie), { ssr: false });
+const Cell = dynamic(() => import("recharts").then((m) => m.Cell), { ssr: false });
+const Tooltip = dynamic(() => import("recharts").then((m) => m.Tooltip), { ssr: false });
+const ResponsiveContainer = dynamic(() => import("recharts").then((m) => m.ResponsiveContainer), { ssr: false });
 
 interface ServicePieChartProps {
   data: ServiceBreakdown[];

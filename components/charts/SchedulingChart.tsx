@@ -1,18 +1,17 @@
 "use client";
 
-import {
-  ComposedChart,
-  Line,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
+import dynamic from "next/dynamic";
 import { ChartTooltip } from "@/components/charts/ChartTooltip";
 import type { TimeSeriesPoint } from "@/lib/data/types";
+
+const ComposedChart = dynamic(() => import("recharts").then((m) => m.ComposedChart), { ssr: false });
+const Line = dynamic(() => import("recharts").then((m) => m.Line), { ssr: false });
+const Bar = dynamic(() => import("recharts").then((m) => m.Bar), { ssr: false });
+const XAxis = dynamic(() => import("recharts").then((m) => m.XAxis), { ssr: false });
+const YAxis = dynamic(() => import("recharts").then((m) => m.YAxis), { ssr: false });
+const CartesianGrid = dynamic(() => import("recharts").then((m) => m.CartesianGrid), { ssr: false });
+const Tooltip = dynamic(() => import("recharts").then((m) => m.Tooltip), { ssr: false });
+const ResponsiveContainer = dynamic(() => import("recharts").then((m) => m.ResponsiveContainer), { ssr: false });
 
 interface SchedulingChartProps {
   data: TimeSeriesPoint[];

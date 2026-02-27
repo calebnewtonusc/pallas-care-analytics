@@ -21,17 +21,6 @@ export interface ServiceBreakdown {
   color: string;
 }
 
-export interface CaregiverProfile {
-  id: string;
-  name: string;
-  tenure: number; // months
-  clientLoad: number;
-  rating: number;
-  trainingCompletion: number;
-  specialties: string[];
-  zone: string;
-}
-
 export interface ClientProfile {
   id: string;
   age: number;

@@ -1,16 +1,16 @@
 "use client";
 
-import {
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  ReferenceLine,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import dynamic from "next/dynamic";
 import type { StrategicRecommendation } from "@/lib/data/types";
+
+const ScatterChart = dynamic(() => import("recharts").then((m) => m.ScatterChart), { ssr: false });
+const Scatter = dynamic(() => import("recharts").then((m) => m.Scatter), { ssr: false });
+const XAxis = dynamic(() => import("recharts").then((m) => m.XAxis), { ssr: false });
+const YAxis = dynamic(() => import("recharts").then((m) => m.YAxis), { ssr: false });
+const CartesianGrid = dynamic(() => import("recharts").then((m) => m.CartesianGrid), { ssr: false });
+const ReferenceLine = dynamic(() => import("recharts").then((m) => m.ReferenceLine), { ssr: false });
+const ResponsiveContainer = dynamic(() => import("recharts").then((m) => m.ResponsiveContainer), { ssr: false });
+const Tooltip = dynamic(() => import("recharts").then((m) => m.Tooltip), { ssr: false });
 
 interface MatrixPoint {
   id: string;
