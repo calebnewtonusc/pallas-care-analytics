@@ -85,14 +85,14 @@ export default function OperationsPage() {
     <div className="space-y-6">
 
       {/* ── ROW 1: KPI Cards ─────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div data-aos="fade-up" data-aos-delay="0" className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiMetrics.map((metric) => (
           <KPICard key={metric.label} metric={metric} />
         ))}
       </div>
 
       {/* ── ROW 2: Hours Chart + Scheduling Chart ─────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div data-aos="fade-up" data-aos-delay="100" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Hours delivered, 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
@@ -251,7 +251,7 @@ export default function OperationsPage() {
       </Card>
 
       {/* ── ROW 4: Tech Adoption + Incident Tracking ──────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="200" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Tech Adoption */}
         <Card>
           <CardHeader className="pb-3">

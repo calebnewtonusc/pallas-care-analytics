@@ -49,7 +49,7 @@ function FinKPICard({
   const TrendIcon = change > 0 ? TrendingUp : TrendingDown;
 
   return (
-    <div className="bg-white rounded-xl border border-[#e2daf0] shadow-sm p-5 flex flex-col gap-3 hover:shadow-md hover:border-[#b894e3] transition-all duration-200">
+    <div className="bg-white rounded-xl border border-[#e2daf0] p-5 flex flex-col gap-3 clay-card">
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium text-[#6b6378] uppercase tracking-wide leading-tight">
           {label}
@@ -99,7 +99,7 @@ export default function FinancialPage() {
   return (
     <div className="space-y-6 pb-8">
       {/* ── FEB ALERT ── */}
-      <div className="flex items-start gap-3 px-4 py-3 bg-amber-50 border border-amber-200 rounded-xl">
+      <div data-aos="fade-up" data-aos-delay="0" className="flex items-start gap-3 px-4 py-3 bg-amber-50 border border-amber-200 rounded-xl">
         <AlertTriangle size={14} className="text-amber-600 flex-shrink-0 mt-0.5" />
         <p className="text-xs text-amber-800 leading-relaxed">
           <span className="font-semibold">Feb &lsquo;26 revenue tracking below plan</span> ,
@@ -109,7 +109,7 @@ export default function FinancialPage() {
       </div>
 
       {/* ── ROW 1: Top 4 KPI Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div data-aos="fade-up" data-aos-delay="80" className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <FinKPICard
           label="Gross Margin"
           value={formatPercent(kpis.grossMargin)}
@@ -141,7 +141,7 @@ export default function FinancialPage() {
       </div>
 
       {/* ── ROW 2: PnL Chart + Revenue by Service ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div data-aos="fade-up" data-aos-delay="160" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* PnL Chart, 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
@@ -182,7 +182,7 @@ export default function FinancialPage() {
       </div>
 
       {/* ── ROW 3: Cost Structure + Payor Mix ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="240" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Cost Structure Table */}
         <Card>
           <CardHeader className="pb-3">

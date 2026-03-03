@@ -18,7 +18,11 @@ export default function StrategyPage() {
     <div className="space-y-6">
 
       {/* ── HERO STRIP ──────────────────────────────────────────────────── */}
-      <div className="bg-white rounded-2xl border border-[#e2daf0] shadow-sm overflow-hidden">
+      <div
+        data-aos="fade-up"
+        data-aos-delay="0"
+        className="bg-white rounded-2xl border border-[#e2daf0] overflow-hidden clay-card"
+      >
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#e2daf0]">
           <div className="px-6 py-5 bg-[#5A378C]">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#d6c2ef]">Initiatives</p>
@@ -44,7 +48,7 @@ export default function StrategyPage() {
       </div>
 
       {/* ── MATRIX + 30-DAY SIDEBAR ─────────────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div data-aos="fade-up" data-aos-delay="100" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>Impact vs. Effort Matrix</CardTitle>
@@ -192,7 +196,7 @@ export default function StrategyPage() {
       </Card>
 
       {/* ── PARTNERSHIP ROADMAP ──────────────────────────────────────── */}
-      <div className="bg-[#f5f0fb] border border-[#e2daf0] rounded-2xl overflow-hidden">
+      <div data-aos="fade-up" data-aos-delay="200" className="bg-[#f5f0fb] border border-[#e2daf0] rounded-2xl overflow-hidden">
         <div className="px-6 py-5 border-b border-[#e2daf0]">
           <p className="text-sm font-semibold text-[#16121e]">From Illustrative to Live: Partnership Roadmap</p>
           <p className="text-xs text-[#6b6378] mt-0.5">

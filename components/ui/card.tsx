@@ -13,8 +13,8 @@ export function Card({ className, hover = false, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "bg-white rounded-xl border border-[#e2daf0] shadow-sm",
-        hover && "transition-shadow duration-200 hover:shadow-md hover:border-[#b894e3]",
+        "bg-white rounded-xl border border-[#e2daf0] clay-card",
+        hover && "transition-shadow duration-200",
         className
       )}
       {...props}

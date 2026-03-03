@@ -59,7 +59,11 @@ export default function ExecutiveOverviewPage() {
     <div className="flex flex-col gap-6">
 
       {/* ── PARTNERSHIP CONTEXT ──────────────────────────────────────── */}
-      <div className="flex items-start justify-between gap-6 bg-[#f5f0fb] border border-[#e2daf0] rounded-xl px-5 py-4">
+      <div
+        data-aos="fade-up"
+        data-aos-delay="0"
+        className="flex items-start justify-between gap-6 bg-[#f5f0fb] border border-[#e2daf0] rounded-xl px-5 py-4"
+      >
         <div className="flex-1">
           <p className="text-[10px] font-bold text-[#5A378C] uppercase tracking-widest mb-1.5">
             Pallas Care × Data Analytics Partnership
@@ -79,7 +83,11 @@ export default function ExecutiveOverviewPage() {
       </div>
 
       {/* ── HERO: Primary KPIs with real visual hierarchy ──────────────── */}
-      <div className="bg-white rounded-2xl border border-[#e2daf0] shadow-sm overflow-hidden">
+      <div
+        data-aos="fade-up"
+        data-aos-delay="80"
+        className="bg-white rounded-2xl border border-[#e2daf0] overflow-hidden clay-card"
+      >
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#e2daf0]">
           {heroMetrics.map((m, i) => (
             <div key={m.label} className={`px-6 py-6 ${i === 0 ? "bg-[#5A378C]" : "bg-white"}`}>
@@ -102,7 +110,7 @@ export default function ExecutiveOverviewPage() {
       </div>
 
       {/* ── Revenue Chart + Scorecard ──────────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div data-aos="fade-up" data-aos-delay="160" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <Card className="lg:col-span-2">
           <CardHeader className="flex flex-row items-start justify-between pb-3">
             <div>
@@ -168,7 +176,7 @@ export default function ExecutiveOverviewPage() {
       </div>
 
       {/* ── Client Growth + Satisfaction ──────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="240" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card>
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between">
@@ -201,7 +209,11 @@ export default function ExecutiveOverviewPage() {
       </div>
 
       {/* ── Secondary Stats Row ──────────────────────────────────────── */}
-      <div className="bg-white rounded-xl border border-[#e2daf0] shadow-sm">
+      <div
+        data-aos="fade-up"
+        data-aos-delay="320"
+        className="bg-white rounded-xl border border-[#e2daf0] clay-card"
+      >
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#e2daf0]">
           {secondaryStats.map((metric) => {
             const isPositive = metric.change > 0;

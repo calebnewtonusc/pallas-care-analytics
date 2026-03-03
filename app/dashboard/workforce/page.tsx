@@ -94,9 +94,9 @@ export default function WorkforcePage() {
   return (
     <div className="space-y-6">
       {/* ── ROW 1: KPI cards ──────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div data-aos="fade-up" data-aos-delay="0" className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Retention KPI, custom to show vs industry */}
-        <div className="bg-white rounded-xl border border-[#e2daf0] shadow-sm p-5 flex flex-col gap-3 hover:shadow-md hover:border-[#b894e3] transition-all duration-200 col-span-1">
+        <div className="bg-white rounded-xl border border-[#e2daf0] p-5 flex flex-col gap-3 clay-card col-span-1">
           <p className="text-xs font-medium text-[#6b6378] uppercase tracking-wide leading-tight">
             Retention Rate
           </p>
@@ -132,7 +132,7 @@ export default function WorkforcePage() {
       </div>
 
       {/* ── ROW 2: Retention trend + Hiring sources ───────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div data-aos="fade-up" data-aos-delay="100" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Retention trend, 2/3 width */}
         <Card className="col-span-2">
           <CardHeader className="pb-3">
@@ -267,7 +267,7 @@ export default function WorkforcePage() {
       </Card>
 
       {/* ── ROW 4: Tenure bands | Turnover reasons ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="200" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Tenure bands */}
         <Card>
           <CardHeader>

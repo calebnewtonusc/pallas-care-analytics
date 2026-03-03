@@ -1,0 +1,136 @@
+/*
+ * Whirl CSS Loading Spinners
+ * Adapted from https://github.com/jh3y/whirl
+ * Converted from SCSS to plain CSS for use in Next.js
+ * Uses --primary CSS variable (#5A378C brand color)
+ */
+
+/* ── Shared spin keyframe ──────────────────────────────────────── */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Arc spinner: simple spinning arc (used as default .whirl-spinner) ── */
+@keyframes whirl-arc {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.whirl-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.whirl-spinner::before {
+  animation: whirl-arc 0.65s infinite linear;
+  border-radius: 100%;
+  border: 3px solid transparent;
+  border-top-color: var(--primary, #5A378C);
+  border-right-color: var(--primary, #5A378C);
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Whirl spinner: classic whirl/twirl animation ──────────────── */
+@keyframes whirl-classic {
+  0% {
+    transform: scale(0) rotate(-45deg) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25) rotate(960deg) translateY(100%);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0) rotate(2000deg) translateY(0);
+    opacity: 1;
+  }
+}
+
+.whirl-twirl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.whirl-twirl::before {
+  animation: whirl-classic 2s infinite linear;
+  background-color: var(--primary, #5A378C);
+  border-radius: 100%;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Double ring spinner: two concentric arcs spinning opposite directions ── */
+@keyframes whirl-ring-outer {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes whirl-ring-inner {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.whirl-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.whirl-ring::before {
+  animation: whirl-ring-outer 1s infinite linear;
+  border-radius: 100%;
+  border: 3px solid transparent;
+  border-top-color: var(--primary, #5A378C);
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.whirl-ring::after {
+  animation: whirl-ring-inner 0.75s infinite linear;
+  border-radius: 100%;
+  border: 3px solid transparent;
+  border-bottom-color: rgba(90, 55, 140, 0.4);
+  content: '';
+  display: block;
+  width: 70%;
+  height: 70%;
+  position: absolute;
+}
+
+/* ── Dots spinner: two orbiting dots ──────────────────────────── */
+.whirl-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.whirl-dots::before {
+  display: block;
+  content: '';
+  animation: spin 1s infinite;
+  border-radius: 100%;
+  box-shadow:
+    10px 0 0 3px var(--primary, #5A378C),
+    -10px 0 0 3px var(--primary, #5A378C);
+  width: 6px;
+  height: 6px;
+}

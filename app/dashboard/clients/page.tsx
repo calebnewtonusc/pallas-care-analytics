@@ -71,14 +71,14 @@ export default function ClientsPage() {
     <div className="space-y-6">
 
       {/* ── ROW 1: KPI Cards ─────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div data-aos="fade-up" data-aos-delay="0" className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiMetrics.map((metric) => (
           <KPICard key={metric.label} metric={metric} />
         ))}
       </div>
 
       {/* ── ROW 2: Care Level + Satisfaction ─────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="80" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Care Level Breakdown */}
         <Card>
           <CardHeader className="pb-3">
@@ -188,7 +188,7 @@ export default function ClientsPage() {
       </div>
 
       {/* ── ROW 3: Retention Curve + Age Distribution ─────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="160" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Retention Curve */}
         <Card>
           <CardHeader className="pb-3">
@@ -266,7 +266,7 @@ export default function ClientsPage() {
       </div>
 
       {/* ── ROW 4: Referral Sources + Geographic Zones ───────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="200" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Referral Sources */}
         <Card>
           <CardHeader className="pb-3">
@@ -370,7 +370,7 @@ export default function ClientsPage() {
       </div>
 
       {/* ── ROW 5: Conditions Served + NPS Breakdown ─────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-aos="fade-up" data-aos-delay="240" className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Conditions Served */}
         <Card>
           <CardHeader className="pb-3">

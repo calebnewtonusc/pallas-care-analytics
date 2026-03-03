@@ -58,3 +58,21 @@ body {
   border-radius: 8px !important;
   box-shadow: 0 4px 16px rgba(90, 55, 140, 0.1) !important;
 }
+
+/* ── Clay-inspired card depth — subtle 3D lift for KPI/chart cards ── */
+.clay-card {
+  box-shadow:
+    8px 8px 0 0 rgba(90, 55, 140, 0.12),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.06),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.7);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.clay-card:hover {
+  box-shadow:
+    10px 10px 0 0 rgba(90, 55, 140, 0.18),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.08),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.8);
+  transform: translate(-1px, -1px);
+  border-color: #b894e3 !important;
+}

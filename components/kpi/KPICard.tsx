@@ -18,8 +18,7 @@ export function KPICard({ metric, className }: KPICardProps) {
   return (
     <div
       className={cn(
-        "bg-white rounded-xl border border-[#e2daf0] shadow-sm p-5 flex flex-col gap-3",
-        "hover:shadow-md hover:border-[#b894e3] transition-all duration-200",
+        "bg-white rounded-xl border border-[#e2daf0] p-5 flex flex-col gap-3 clay-card",
         className
       )}
     >
